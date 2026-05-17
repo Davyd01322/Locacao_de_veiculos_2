@@ -1,15 +1,21 @@
-package project;
+package project.servidor;
 
 import java.util.List;
+import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.HashMap;
 
-public class LocadoraDeVeiculos implements Locacao{
+import project.common.*;
+
+import java.util.HashMap;
+import java.rmi.*;
+import java.rmi.server.*;
+
+public class LocadoraDeVeiculos extends UnicastRemoteObject implements LocadoraDeVeiculosInterface{
 	private Map<String,ArrayList<MeiosDeTransporte>> disponiveis;
 	private ArrayList<MeiosDeTransporte> alugados;
 	
-	LocadoraDeVeiculos(){
+	LocadoraDeVeiculos() throws RemoteException{
 		disponiveis = new HashMap<>();
 		alugados = new ArrayList<>();
 		
@@ -26,7 +32,7 @@ public class LocadoraDeVeiculos implements Locacao{
 		disponiveis.put("caminhao", caminhao);
 	}
 	
-	public void novoVeiculo(MeiosDeTransporte v) {
+	public void novoVeiculo(MeiosDeTransporte v) throws RemoteException{
 		String tipo = v.getTipo();
 		
 		switch(tipo){
@@ -48,7 +54,7 @@ public class LocadoraDeVeiculos implements Locacao{
 		}
 	}
 
-	public MeiosDeTransporte Alugar(String s){
+	public MeiosDeTransporte Alugar(String s) throws RemoteException{
 		int index = Integer.parseUnsignedInt(s);
 		int adjust = 0;
 		Boolean flag = false;
@@ -109,7 +115,7 @@ public class LocadoraDeVeiculos implements Locacao{
 		return this.alugados.getLast();
 	}
 	
-	private void getVeiculo(MeiosDeTransporte v){
+	private void getVeiculo(MeiosDeTransporte v) throws RemoteException{
 		String tipo = v.getTipo();
 		boolean aux = true;
 		
@@ -126,7 +132,7 @@ public class LocadoraDeVeiculos implements Locacao{
 		}
 	}
 	
-	public void Devolver(MeiosDeTransporte v){
+	public void Devolver(MeiosDeTransporte v) throws RemoteException{
 		String tipo = v.getTipo();
 		boolean aux = true;
 		
@@ -143,7 +149,7 @@ public class LocadoraDeVeiculos implements Locacao{
 		}
 	}
 	
-	public void venderVeiculo(MeiosDeTransporte v) {
+	public void venderVeiculo(MeiosDeTransporte v) throws RemoteException{
 		String tipo = v.getTipo();
 		boolean aux = true;
 		
@@ -159,7 +165,7 @@ public class LocadoraDeVeiculos implements Locacao{
 		}
 	}
 	
-	public String listarDisponiveis(){
+	public String listarDisponiveis() throws RemoteException{
 		String text = "";
 		int index = 1;
 

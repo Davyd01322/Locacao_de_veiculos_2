@@ -1,8 +1,8 @@
-package project;
+package project.common;
 
-public class Caminhao extends MeiosDeTransporte{
+public class Onibus extends MeiosDeTransporte{
 	
-	Caminhao(String marca, String modelo, String cor, String placa){
+	public Onibus(String marca, String modelo, String cor, String placa){
 		super.marca = marca;
 		super.modelo = modelo;
 		super.cor = cor;
@@ -12,7 +12,7 @@ public class Caminhao extends MeiosDeTransporte{
 	@Override
 	public String toString() {
 		String text = "========================\n";
-		text += "Tipo: Caminhão\n";
+		text += "Tipo: Ônibus\n";
 		text += "Placa:" + super.placa + "\n";
 		text += "Modelo:" + super.modelo + "\n";
 		text += "Marca:" + super.marca + "\n";
@@ -24,11 +24,11 @@ public class Caminhao extends MeiosDeTransporte{
 	
 	@Override
 	public String getTipo() {
-		return "caminhao";
+		return "onibus";
 	}
 	
 	@Override
 	public double valorMulta() {
-		return super.getNMultas() * 56;
+		return super.getNMultas() * 30;
 	}
 }

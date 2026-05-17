@@ -1,8 +1,8 @@
-package project;
+package project.common;
 
 import java.io.Serializable;
 
-public abstract class MeiosDeTransporte implements Multa {
+public abstract class MeiosDeTransporte implements Multa, Serializable {
 	protected String marca;
 	protected String modelo;
 	protected String cor;

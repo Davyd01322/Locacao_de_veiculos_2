@@ -1,4 +1,4 @@
-package project;
+package project.common;
 
 public interface Multa {
 	double valorMulta();
